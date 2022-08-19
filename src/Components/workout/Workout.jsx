@@ -1,5 +1,6 @@
 import React from "react";
 import s from "../rezults/rezults.module.css";
+
 function Workout(props) {
   const { data, onRemove, onEdit } = props;
   return (

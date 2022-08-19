@@ -15,8 +15,7 @@ function App() {
     <>
       <FormRezult />
       <Rezults
-        workouts={workouts}
-        
+        workouts={workouts} 
       />
     </>
   );
