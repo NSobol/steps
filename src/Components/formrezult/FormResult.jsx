@@ -1,7 +1,10 @@
+
 import React from "react";
-import s from "./formrezult.module.css";
+import s from "./FormResult.module.css";
 
 function FormRezult(props) {
+ 
+
   return (
     <form className={s.form}>
       <div className={s["form-item"]}>
@@ -9,7 +12,7 @@ function FormRezult(props) {
           Дата (ДД.ММ.ГГ)
         </label>
         <input
-          type="text"
+          type="date"
           id="data"
           name="data"
           className={s["form-item-input"]}
@@ -20,7 +23,7 @@ function FormRezult(props) {
           Пройдено км
         </label>
         <input
-          type="text"
+          type="number"
           id="distance"
           name="distance"
           className={s["form-item-input"]}

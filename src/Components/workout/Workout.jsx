@@ -1,5 +1,5 @@
 import React from "react";
-import s from "../rezults/rezults.module.css";
+import s from "../results/results.module.css";
 
 function Workout(props) {
   const { data, onRemove, onEdit } = props;
