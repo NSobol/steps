@@ -10,10 +10,10 @@ function WorkoutCounter(props) {
   ]);
 
   return (
-    <>
+    <React.Fragment>
       <FormResult />
       <Results workouts={workouts} />
-    </>
+    </React.Fragment>
   );
 }
 
