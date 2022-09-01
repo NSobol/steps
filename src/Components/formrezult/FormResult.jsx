@@ -1,10 +1,7 @@
-
 import React from "react";
 import s from "./FormResult.module.css";
 
 function FormRezult(props) {
- 
-
   return (
     <form className={s.form}>
       <div className={s["form-item"]}>
