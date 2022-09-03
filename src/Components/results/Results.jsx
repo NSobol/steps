@@ -1,10 +1,12 @@
 import React from "react";
 import Workout from "../workout/Workout";
+import Proptypes from "prop-types";
 import s from "./results.module.css";
 
 function Results(props) {
   const { workouts, onRemove, onEdit } = props;
 
+  
   return (
     <table className={s["table"]}>
       <thead>
@@ -24,3 +26,7 @@ function Results(props) {
 }
 
 export default Results;
+
+Results.propTypes = {
+  workouts: Proptypes.array,
+};

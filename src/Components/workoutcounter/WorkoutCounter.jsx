@@ -3,15 +3,36 @@ import FormResult from "../formrezult/FormResult.jsx";
 import Results from "../results/Results.jsx";
 
 function WorkoutCounter(props) {
-  const [workouts] = useState([
-    { id: "1", date: "10.08.22", distance: "4.7" },
-    { id: "2", date: "11.08.22", distance: "6.2" },
-    { id: "3", date: "12.08.22", distance: "5.3" },
-  ]);
+  const [workouts, setWorkouts] = useState([]);
 
+  function handlerAdd(workout) {
+	  
+    if (workouts.some((el) => el.date === workout.date)) {
+      setWorkouts((prevWorkouts) =>
+        prevWorkouts.map((obj) => {
+          if (obj.date === workout.date) {
+            return {
+              id: workout.id,
+              date: obj.date,
+              distance: +obj.distance + +workout.distance,
+            };
+          }
+          return obj;
+        })
+      );
+    } else {
+      setWorkouts((prevWorkouts) => [...prevWorkouts, workout]);
+    }
+  }
+  function sortingByDate(date1, date2) {
+    const a = date1.split(".");
+    const b = date2.split(".");
+    return b[2] - a[2] || b[1] - a[1] || b[0] - a[0];
+  }
+  workouts.sort((a, b) => sortingByDate(a.date, b.date));
   return (
     <React.Fragment>
-      <FormResult />
+      <FormResult onAdd={handlerAdd} />
       <Results workouts={workouts} />
     </React.Fragment>
   );
