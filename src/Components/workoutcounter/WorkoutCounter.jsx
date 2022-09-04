@@ -7,13 +7,15 @@ function WorkoutCounter(props) {
   const [edit, setEdit] = useState({});
 
   function handlerAdd(workout) {
+    setEdit({});
     if (workouts.some((el) => el.date === workout.date)) {
       setWorkouts((prevWorkouts) =>
         prevWorkouts.map((obj) => {
-          if (obj.date === workout.date) {
+          if (obj.dateStr === workout.dateStr) {
             return {
               id: workout.id,
               date: obj.date,
+              dateStr: obj.dateStr,
               distance: +obj.distance + +workout.distance,
             };
           }
@@ -31,7 +33,7 @@ function WorkoutCounter(props) {
     return b[2] - a[2] || b[1] - a[1] || b[0] - a[0];
   }
 
-  workouts.sort((a, b) => sortingByDate(a.date, b.date));
+  workouts.sort((a, b) => sortingByDate(a.dateStr, b.dateStr));
 
   function handlerRemoved(id) {
     setWorkouts(workouts.filter((item) => item.id !== id));
@@ -42,13 +44,13 @@ function WorkoutCounter(props) {
     if (Object.keys(edit).length === 0) {
       setEdit(el);
       handlerRemoved(id);
-	  }
-	  console.log(el);
+    }
+    console.log(el);
   }
 
   return (
     <React.Fragment>
-      <FormResult onAdd={handlerAdd} />
+      <FormResult onAdd={handlerAdd} editObj={edit} />
       <Results
         workouts={workouts}
         onRemove={handlerRemoved}

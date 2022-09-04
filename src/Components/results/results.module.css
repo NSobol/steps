@@ -27,7 +27,6 @@
 .edit-btn,
 .remove-btn {
   color: rgb(67, 236, 11);
-  rotate: 95deg;
   text-decoration: none;
   display: inline-block;
   margin: 0 10px;

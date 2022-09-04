@@ -1,13 +1,12 @@
 import React from "react";
 import s from "../results/results.module.css";
 
-
 function Workout(props) {
-	const { data, onRemove, onEdit } = props;
-	
+  const { data, onRemove, onEdit } = props;
+
   return (
     <tr>
-      <td>{data.date}</td>
+      <td>{data.dateStr}</td>
       <td>{data.distance}</td>
       <td>
         <a onClick={() => onEdit(data.id)} className={s["edit-btn"]} href="#0">

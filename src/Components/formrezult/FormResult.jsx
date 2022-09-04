@@ -3,9 +3,13 @@ import s from "./FormResult.module.css";
 import { nanoid } from "nanoid";
 import WorkoutModel from "../../Models/WorkoutModel.js";
 
-function FormResult(props) {
-  const { onAdd } = props;
-  const [form, setForm] = useState({ date: "", distance: "" });
+function FormResult({ onAdd, editObj }) {
+  const [form, setForm] = useState({ date: "", dateStr: "", distance: "" });
+
+	
+  if (Object.keys(editObj).length !== 0 && form.id !== editObj.id) {
+    setForm({ id: editObj.id, date: editObj.date, distance: editObj.distance });
+  }
 
   function handlerForm(evt) {
     evt.preventDefault();
@@ -14,16 +18,16 @@ function FormResult(props) {
     let str2 = strDate.slice(5, 7);
     let str3 = strDate.slice(8, 10);
     let newData = str3 + "." + str2 + "." + str1;
-    let workout = new WorkoutModel(nanoid(), newData, form.distance);
+    let workout = new WorkoutModel(nanoid(), form.date, newData, form.distance);
     onAdd(workout);
-    setForm({ date: "", distance: "" });
+    setForm({ date: "", dateStr: "", distance: "" });
   }
 
   function handleChange(evt) {
     const { name, value } = evt.target;
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
-	}
-	
+  }
+
   return (
     <form className={s.form} onSubmit={handlerForm}>
       <div className={s["form-item"]}>
@@ -37,6 +41,7 @@ function FormResult(props) {
           className={s["form-item-input"]}
           value={form.date}
           onChange={handleChange}
+          required
         />
       </div>
       <div className={s["form-item"]}>
@@ -50,6 +55,7 @@ function FormResult(props) {
           className={s["form-item-input"]}
           value={form.distance}
           onChange={handleChange}
+          required
         />
       </div>
 
