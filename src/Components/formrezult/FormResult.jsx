@@ -22,7 +22,8 @@ function FormResult(props) {
   function handleChange(evt) {
     const { name, value } = evt.target;
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
-  }
+	}
+	
   return (
     <form className={s.form} onSubmit={handlerForm}>
       <div className={s["form-item"]}>
